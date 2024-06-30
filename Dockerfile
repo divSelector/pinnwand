@@ -16,30 +16,30 @@ RUN venv/bin/pip install -r requirements.txt
 # Copy the source code in last to optimise rebuilding the image
 COPY src/pinnwand /usr/app/pinnwand
 
-EXPOSE 8000
+# EXPOSE 8000
 CMD ["venv/bin/python3", "-m", "pinnwand", "http"]
 
 # =========================================================================
 
-FROM base AS psql
-WORKDIR /usr/app
-COPY --from=base /usr/app ./
-RUN venv/bin/pip install psycopg2-binary
+# FROM base AS psql
+# WORKDIR /usr/app
+# COPY --from=base /usr/app ./
+# RUN venv/bin/pip install psycopg2-binary
 
-EXPOSE 8000
-CMD ["venv/bin/python3", "-m", "pinnwand", "http"]
+# # EXPOSE 8000
+# CMD ["venv/bin/python3", "-m", "pinnwand", "http"]
 
-# =========================================================================
+# # =========================================================================
 
-FROM base AS mysql
-WORKDIR /usr/app
-RUN \
-    microdnf install -y \
-        community-mysql-devel python3-devel gcc && \
-    microdnf clean all
+# FROM base AS mysql
+# WORKDIR /usr/app
+# RUN \
+#     microdnf install -y \
+#         community-mysql-devel python3-devel gcc && \
+#     microdnf clean all
 
-COPY --from=base /usr/app ./
-RUN venv/bin/pip install mysqlclient
+# COPY --from=base /usr/app ./
+# RUN venv/bin/pip install mysqlclient
 
-EXPOSE 8000
-CMD ["venv/bin/python3", "-m", "pinnwand", "http"]
+# # EXPOSE 8000
+# CMD ["venv/bin/python3", "-m", "pinnwand", "http"]

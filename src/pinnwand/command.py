@@ -41,7 +41,7 @@ def main(verbose: int, configuration_path: Optional[str]) -> None:
 
 
 @main.command()
-@click.option("--port", default=8000, help="Port to listen to.")
+@click.option("--port", default=80, help="Port to listen to.")
 @click.option(
     "--debug",
     is_flag=True,
