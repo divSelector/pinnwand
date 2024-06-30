@@ -124,7 +124,8 @@ function indent_textarea(event) {
 	let selector = event.target.parentNode.parentNode.querySelector("select[name='lexer']"),
 	    lexer = selector.options[selector.selectedIndex].text
 
-    let indent = indents[lexer.toLowerCase()];
+    let indent = indents[lexer.toLowerCase()] || indents["default"];
+    
 	let keyCode = event.keyCode || event.which;
 
 	if (keyCode == 9) {
