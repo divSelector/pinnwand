@@ -2,6 +2,7 @@
 a HTTP server, add and remove paste, initialize the database and reap expired
 pastes."""
 
+import os
 import logging
 import sys
 from datetime import timedelta
@@ -41,7 +42,7 @@ def main(verbose: int, configuration_path: Optional[str]) -> None:
 
 
 @main.command()
-@click.option("--port", default=443, help="Port to listen to.")
+@click.option("--port", default=None, help="Port to listen to.")
 @click.option(
     "--debug",
     is_flag=True,
@@ -64,11 +65,12 @@ def http(port: int, debug: bool) -> None:
     )
     reap_task.start()
 
+    # Use the port from the environment variable if available
+    port = port or int(os.environ.get("PORT", 8000))
     application = make_application(debug)
     application.listen(port, xheaders=True)
 
     tornado.ioloop.IOLoop.current().start()
-
 
 @main.command()
 @click.option("--lexer", default="text", help="Lexer to use.")
