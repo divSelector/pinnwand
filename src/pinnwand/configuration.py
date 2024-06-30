@@ -19,10 +19,10 @@ class Configuration:
         self._database_uri = "sqlite:///:memory:"
         self._paste_size = 256 * 1024  # in bytes
         self._footer = 'View <a href="//github.com/supakeen/pinnwand" target="_BLANK">source code</a>, the <a href="/removal">removal</a> or <a href="/expiry">expiry</a> stories, or read the <a href="/about">about</a> page.'
-        self._paste_help = "<p>Welcome to pinnwand, this site is a pastebin. It allows you to share code with others. If you write code in the text area below and press the paste button you will be given a link you can share with others so they can view your code as well.</p><p>People with the link can view your pasted code, only you can remove your paste and it expires automatically. Note that anyone could guess the URI to your paste so don't rely on it being private.</p>"
+        self._paste_help = "<p>Welcome, this site is a pastebin. It allows you to share code with others. If you write code in the text area below and press the paste button you will be given a link you can share with others so they can view your code as well. People with the link can view your pasted code; only you can remove your paste and it expires automatically. Note that anyone could guess the URI to your paste so don't rely on it being private. Also, while I can guarantee that the files will expire, I can't guarantee they will persist at this time.</p>"
         self._page_path = None
         self._page_list = ["about", "removal", "expiry"]
-        self._default_selected_lexer = "text"
+        self._default_selected_lexer = "autodetect"
         self._preferred_lexers = []  # type: ignore
         self._logo_path = None
         self._report_email = None

@@ -244,24 +244,23 @@ function setupShowPage() {
 function setupCreatePage() {
     setupFileDrop();
 
-    let but = document.createElement("button");
+    // let but = document.createElement("button");
 
-    but.innerText = "Add another file.";
-    but.className = "add";
-    but.href = "#";
+    // but.innerText = "Add another file.";
+    // but.className = "add";
+    // but.href = "#";
 
-    but.addEventListener("click", function(event) {
-        event.preventDefault();
-        addNewFile();
-    })
-
-    document.querySelector("section.paste-submit").appendChild(but);
+    // but.addEventListener("click", function(event) {
+    //     event.preventDefault();
+    //     addNewFile();
+    // })
 
     let textareas = document.querySelectorAll('section.file-part textarea');
     for(let i = 0; i < textareas.length; i++) {
         textareas[i].addEventListener("keydown", indent_textarea);
     }
 }
+
 
 function setupFileDrop() {
     const filedrop = document.getElementById('file-drop');
