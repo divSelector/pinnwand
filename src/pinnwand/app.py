@@ -82,7 +82,7 @@ def make_application(debug: bool = False) -> tornado.web.Application:
             (
                 r"/favicon.png",
                 handler.website.Logo,
-                {"path": path.static / "logo.png"},
+                {"path": path.static / "favicon.png"},
             ),
         ]
 
