@@ -45,7 +45,7 @@ function getFirstEmptyFilePartSection() {
 function addRemoveButtons() {
     const tag = "button";
     const className = "remove";
-    const label = "Remove this file";
+    const label = "Remove file";
     const selector = `${tag}.${className}`;
 
     const main = document.querySelector("main.page-create");
@@ -229,7 +229,7 @@ function setupShowPage() {
         copyButton.addEventListener("click", function(event) {
             event.preventDefault();
 
-            let textarea = event.target.parentNode.parentNode.querySelector("textarea.copy-area");
+            let textarea = event.target.parentNode.parentNode.parentNode.querySelector("textarea.copy-area");
             let listener = (event) => {
                 event.preventDefault();
                 event.clipboardData.setData("text/plain", textarea.value);
@@ -247,16 +247,18 @@ function setupShowPage() {
 function setupCreatePage() {
     setupFileDrop();
 
-    // let but = document.createElement("button");
+    let but = document.createElement("button");
 
-    // but.innerText = "Add another file.";
-    // but.className = "add";
-    // but.href = "#";
+    but.innerText = "Add another file.";
+    but.className = "add";
+    but.href = "#";
 
-    // but.addEventListener("click", function(event) {
-    //     event.preventDefault();
-    //     addNewFile();
-    // })
+    but.addEventListener("click", function(event) {
+        event.preventDefault();
+        addNewFile();
+    })
+
+    document.querySelector("section.paste-submit").appendChild(but);
 
     let textareas = document.querySelectorAll('section.file-part textarea');
     for(let i = 0; i < textareas.length; i++) {
