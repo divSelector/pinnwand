@@ -2,7 +2,7 @@
 
 {% block body %}
 <main class="paste-show{% if len(paste.files) > 1 %} multiple{% end %}">
-    <div class="paste-actions paste-meta">
+    <div class="paste-actions">
         <a class="new-paste" href="/">New paste</a>
 
         <a class="handle-paste" href="/repaste/{{ paste.slug }}">Repaste</a>
@@ -18,18 +18,20 @@
         <div class="files">
             {% for file in paste.files %}
             <div id="{{ file.slug }}" class="file-show lang-{{ file.lexer }} code{% if not linenos %} nolinenos{% end %} {% if len(paste.files) == 1 %}single{% end %}">
+                <div class="meta">
+                    Filename: {{ file.filename }}.
+                    Size: {{ file.pretty_size }}.
+                    <span style="float:right;">
+                    View <a href="/raw/{{ file.slug }}">raw</a>, <button class="btn-link copy-button">copy</button>, <a href="/hex/{{ file.slug }}">hex</a>, or <a href="/download/{{ file.slug }}">download</a> this file.
+                    {% if handler.application.configuration.report_email %}
+                    <a href="mailto:{{ handler.application.configuration.report_email }}?subject=Pinnwand report (File ID: {{ file.slug }})">Report</a> this file.
+                    </span>
+                    {% end %}
+                </div>
                 <div class="code">
                     {% raw file.fmt %}
                 </div>
                 <textarea class="copy-area">{{ file.raw }}</textarea>
-                <div class="meta">
-                    Filename: {{ file.filename }}.
-                    Size: {{ file.pretty_size }}.
-                    View <a href="/raw/{{ file.slug }}">raw</a>, <button class="btn-link copy-button">copy</button>, <a href="/hex/{{ file.slug }}">hex</a>, or <a href="/download/{{ file.slug }}">download</a> this file.
-                    {% if handler.application.configuration.report_email %}
-                    <a href="mailto:{{ handler.application.configuration.report_email }}?subject=Pinnwand report (File ID: {{ file.slug }})">Report</a> this file.
-                    {% end %}
-                </div>
             </div>
             {% end %}
         </div>
@@ -52,7 +54,7 @@
             <p>This paste <span>never</span> expires.
         {% end %}
 
-            Pasted through <em>{{ paste.src }}</em>.
+            <span style="float:right;">Pasted through <em>{{ paste.src }}</em>.</span>
             </p>
     </div>
 </main>

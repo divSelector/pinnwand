@@ -68,15 +68,20 @@ input, select {
 }
 
 .paste-actions:hover, 
-.paste-meta:hover, 
-.paste-actions, 
-.paste-meta {
+.paste-actions {
     background-color: var(--color0) !important;
     opacity: 1 !important;
 }
 
+.paste-meta:hover, 
+.paste-meta {
+    background-color: var(--color2) !important;
+    opacity: 1 !important;
+    color: #9e8fc3;
+}
 
-.file-show, 
+
+.file-show,
 .file-show:hover {
     background-color: #9e8fc3 !important;
     opacity: 1 !important;
@@ -88,6 +93,7 @@ input, select {
     background-color: #3a2f55 !important;
     opacity: 1 !important;
     color: var(--color0);
+    font-size: 1rem !important;
 }
 
 .meta a, .meta button, 
@@ -139,3 +145,7 @@ button[type="submit"]:hover,
 article {
     margin-top: 1.5em;
 }
+
+.highlighted {
+    background-color: rgba(93, 255, 115, 0.2) !important;;
+  }
